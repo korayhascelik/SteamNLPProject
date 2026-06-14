@@ -1,0 +1,39 @@
+ŞAMPIYON MODEL METADATA
+=====================================
+
+Model Adı: 4. Random Forest
+Kayıt Tarihi: 01.06.2026 07:53
+
+Performans Metrikleri (Test Seti):
+- Accuracy: 63.93%
+- Precision: 92.35%
+- Recall: 61.55%
+- F1-Score: 0.7387
+- ROC-AUC: 0.7536
+
+Seçilen Features (7):
+  1. sentiment_polarity_scaled
+  2. playtime_x_sentiment_polarity_scaled
+  3. polarity_intensity_scaled
+  4. sentiment_ratio_scaled
+  5. has_positive_sentiment_scaled
+  6. has_negative_sentiment_scaled
+  7. word_count_x_sentiment_polarity_scaled
+
+Kaydedilen Dosyalar:
+- models/champion_model.joblib (Eğitilmiş model)
+- models/scaler_champion.joblib (Feature scaler)
+- models/features_champion.joblib (Feature isimleri)
+- models/model_metadata.txt (Bu dosya)
+
+Kullanım:
+  import joblib
+  import os
+
+  models_dir = 'models'
+  model = joblib.load(os.path.join(models_dir, 'champion_model.joblib'))
+  scaler = joblib.load(os.path.join(models_dir, 'scaler_champion.joblib'))
+  features = joblib.load(os.path.join(models_dir, 'features_champion.joblib'))
+
+  X_new_scaled = scaler.transform(X_new[features['selected_features']])
+  predictions = model.predict(X_new_scaled)
